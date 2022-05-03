@@ -37,11 +37,11 @@ export default function UserModel(mongoose) {
             console.log(' >> plainPassword >> ' + plainPassword)
             console.log(' >> this.password >> ' + this.password)
             let isMatch = false
-            if (plainPassword === this.password) {
-                console.log(' >> plainPassword===this.password >> ')
+            if (bcrypt.compareSync(plainPassword, this.password)) {
+                console.log(' >> plainPassword === this.password >> ')
                 isMatch = true
             } else {
-                console.log(' >> plainPassword !==this.password >> ')
+                console.log(' >> plainPassword !== this.password >> ')
                 isMatch = false
             }
             bcrypt.compare(plainPassword, this.password, function (err, _isMatch) {
